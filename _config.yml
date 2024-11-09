@@ -1,8 +1,8 @@
 # Site wide configuration
 
-title:            Faizan Zafar
+title:            Aaiman Naeem
 locale:           en_DE
-url:              https://faizanzafar.de
+url:              https://aaimannaeem.github.io
 
 
 # Jekyll configuration
@@ -26,10 +26,10 @@ kramdown:
 
 # Site owner
 owner:
-  name: Faizan Zafar
+  name: Aaiman Naeem
   avatar: my-image.png
-  bio: "Product @ ATOSS | RWTH"
-  email: faizanzafar40@gmail.com
+  bio: "Trainee @ DHL | Goethe University"
+  email: aaiman.naeem@gmail.com
   disqus-shortname: #
   twitter: #username
   facebook: #
@@ -40,9 +40,9 @@ owner:
     ad-client:
     ad-slot:
   bing-verify:
-  github: faizanzafar40
+  github: aaimannaeem
   stackoverflow: #123456/username   from a "http://stackoverflow.com/users/123456/username" link
-  linkedin: faizanzafar40
+  linkedin: aaiman-naeem-4b9191167
   xing: #username
   instagram: #username
   lastfm: #username
