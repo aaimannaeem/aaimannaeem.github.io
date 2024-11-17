@@ -2,7 +2,7 @@
 layout: post
 title: Business Analysis & Process Management Certification
 tags: [certification]
-link: /CertificateOfCompletion_Become a Business Analyst.pdf
+link:
 ---
 
 Business Analysis & Process Management Certification
