@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Impact of Political regimes on Economic growth
+title: Impact of Political Regimes on Economic Growth
 comments: true
 tags: [project]
 ---
