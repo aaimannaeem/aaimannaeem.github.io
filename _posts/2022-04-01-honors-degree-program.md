@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Business Analysis & Process Management Certification
+title: Honors Degree Program in Artificial Intelligence and Entrepreneurship
 tags: [certification]
 link: /Honors degree program.pdf
 ---
