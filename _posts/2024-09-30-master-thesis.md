@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Connection between Sponsorship disclosure, Influencer creditability and Consumer purchase intention
+title: Connection between Sponsorship Disclosure, Influencer Credibility and Consumer Purchase Intention
 comments: true
 tags: [project]
 ---
