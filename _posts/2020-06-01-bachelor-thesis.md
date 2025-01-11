@@ -5,7 +5,7 @@ comments: true
 tags: [project]
 ---
 
-Based on the historical data, it was proven that democratic regimes positively impacted growth indicators.
+Based on historical data, it was proven that democratic regimes positively impact growth indicators.
 
 <!-- <a href="/Master_Thesis.pdf" target="_blank"> Thesis Report</a> |
 <a href="/Final_Talk.pdf" target="_blank"> Thesis Defense</a> |
