@@ -1,5 +1,5 @@
 ---
 layout: home
-excerpt: "M.Sc. Data Science @ RWTH Aachen"
+excerpt: "Application Management @ DHL | Product Management, SAP"
 tags: []
 ---
