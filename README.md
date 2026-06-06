@@ -5,9 +5,12 @@ Live at **[aaimannaeem.com](https://aaimannaeem.com)**.
 
 A single-page, fully static site — no build step, no dependencies.
 
+Sections: hero · about (focus cards) · experience (timeline) · skills · projects ·
+certifications · education & languages · contact.
+
 ## Features
 
-- 🎨 Modern UI: gradient accents, glassmorphism nav, animated background, scroll reveals
+- 🎨 Modern UI: gradient accents, glassmorphism nav, hero glow + grid, floating photo, scroll reveals, animated counters & language bars
 - 🌗 Light & dark modes — follows the OS by default, with a manual toggle (remembered via `localStorage`)
 - 📱 Fully responsive / mobile-friendly with a slide-down menu
 - ♿ Accessible: semantic HTML, skip link, keyboard focus styles, `prefers-reduced-motion` support
@@ -19,11 +22,12 @@ A single-page, fully static site — no build step, no dependencies.
 | --- | --- |
 | `index.html` | All page content |
 | `styles.css` | Styling + light/dark theme tokens |
-| `script.js` | Theme toggle, mobile menu, scroll reveals, stat counters |
+| `script.js` | Theme toggle, mobile menu, scroll reveals, counters, language bars, scroll spy |
 | `favicon.svg` | Site icon (AN monogram) |
 | `me.png` | Profile photo |
 | `Resume_Naeem.pdf` | Downloadable résumé |
 | `CNAME` | Custom domain for GitHub Pages |
+| `netlify.toml` | Netlify config (no build step) + security headers |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is |
 
 ## Run locally
