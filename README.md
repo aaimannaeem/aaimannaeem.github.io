@@ -3,7 +3,8 @@
 Personal portfolio site for **Aaiman Naeem**, Product Application Manager (SAP).
 Live at **[aaimannaeem.com](https://aaimannaeem.com)**.
 
-A single-page, fully static site — no build step, no dependencies.
+A single-page, fully static site — **everything lives in one self-contained `index.html`**
+(HTML, CSS and JavaScript all inlined). No build step, no dependencies.
 
 Sections: hero · about (focus cards) · experience (timeline) · skills · projects ·
 certifications · education & languages · contact.
@@ -20,9 +21,7 @@ certifications · education & languages · contact.
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | All page content |
-| `styles.css` | Styling + light/dark theme tokens |
-| `script.js` | Theme toggle, mobile menu, scroll reveals, counters, language bars, scroll spy |
+| `index.html` | The entire site — page content, inlined `<style>` (light/dark theme tokens) and inlined `<script>` (theme toggle, mobile menu, scroll reveals, counters, language bars, scroll spy) |
 | `favicon.svg` | Site icon (AN monogram) |
 | `me.png` | Profile photo |
 | `Resume_Naeem.pdf` | Downloadable résumé |
@@ -50,5 +49,5 @@ publish directory `/` (the repository root).
 
 ## Editing content
 
-All text lives in `index.html`. To change colors, edit the `--accent` / `--accent-2`
-variables at the top of `styles.css` (they cascade to both themes).
+Everything lives in `index.html`. To change colors, edit the `--accent` / `--accent-2`
+variables in the `:root` block inside the inlined `<style>` (they cascade to both themes).
