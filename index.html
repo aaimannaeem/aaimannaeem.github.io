@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Prevent theme flash: set theme before paint -->
+  <!-- Prevent theme/lang flash: set theme + language before paint -->
   <script>
     (function () {
       try {
@@ -34,6 +34,11 @@
         var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         var theme = stored || (prefersDark ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', theme);
+
+        var storedLang = localStorage.getItem('lang');
+        var nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+        var lang = storedLang || (nav.indexOf('de') === 0 ? 'de' : 'en');
+        document.documentElement.setAttribute('lang', lang);
       } catch (e) {}
     })();
   </script>
@@ -224,6 +229,12 @@
   .theme-toggle .moon { display: none; }
   [data-theme="dark"] .theme-toggle .sun { display: none; }
   [data-theme="dark"] .theme-toggle .moon { display: block; }
+
+  .lang-toggle {
+    width: auto; min-width: 42px; gap: 6px; padding: 0 12px;
+    font-family: var(--font); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.03em;
+  }
+  .lang-toggle svg { width: 17px; height: 17px; }
 
   .hamburger { display: none; }
 
@@ -538,6 +549,7 @@
 
   @media (max-width: 720px) {
     section { padding: 76px 0; }
+    .hero h1 { white-space: normal; }
     .nav-links {
       position: fixed; top: 70px; right: 0; left: 0;
       flex-direction: column; align-items: stretch; gap: 4px;
@@ -572,7 +584,7 @@
   /* ---------- Print ---------- */
   @media print {
     header, .hero::before, .hero::after, .hero-cta, .hero-socials, .photo-frame .orb,
-    .contact-actions, .hamburger, .theme-toggle { display: none !important; }
+    .contact-actions, .hamburger, .theme-toggle, .lang-toggle { display: none !important; }
     body { color: #000; background: #fff; }
     section, .hero { padding: 16px 0; }
   }
@@ -601,7 +613,7 @@
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#about">Skip to content</a>
+  <a class="skip-link" href="#about" data-i18n="skip">Skip to content</a>
 
   <!-- ===================== NAV ===================== -->
   <header id="header">
@@ -612,16 +624,20 @@
       </a>
 
       <nav class="nav-links" id="navLinks" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#certs">Certifications</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#experience" data-i18n="nav.experience">Experience</a>
+        <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#certs" data-i18n="nav.certs">Certifications</a>
+        <a href="#education" data-i18n="nav.education">Education</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
       </nav>
 
       <div class="nav-actions">
+        <button class="icon-btn lang-toggle" id="langToggle" aria-label="Auf Deutsch umschalten" title="Language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span id="langLabel">DE</span>
+        </button>
         <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
           <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
           <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -638,10 +654,10 @@
     <section class="hero" id="home">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow reveal">Product Application Manager · Munich, Germany</span>
-          <h1 class="reveal d1">Hi, I'm <span class="accent-text">Aaiman&nbsp;Naeem</span></h1>
-          <p class="role reveal d2">I turn data-driven insight into products that move business forward.</p>
-          <p class="lead reveal d3">
+          <span class="eyebrow reveal" data-i18n="hero.eyebrow">Product Application Manager · Munich, Germany</span>
+          <h1 class="reveal d1" data-i18n="hero.h1">Hi, I'm <span class="accent-text">Aaiman&nbsp;Naeem</span></h1>
+          <p class="role reveal d2" data-i18n="hero.role">I turn data-driven insight into products that move business forward.</p>
+          <p class="lead reveal d3" data-i18n="hero.lead">
             An outcome-driven Product professional with a strong bias for action, passionate about
             leveraging analytical and data-driven insights to drive business growth. 3+ years across
             diverse industries, bridging the gap between technology, product strategy and business
@@ -650,11 +666,11 @@
           <div class="hero-cta reveal d4">
             <a href="#contact" class="btn btn-primary">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
-              Get in touch
+              <span data-i18n="hero.cta.contact">Get in touch</span>
             </a>
             <a href="assets/Resume_Naeem.pdf" target="_blank" rel="noopener" class="btn btn-ghost">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-              Download Résumé
+              <span data-i18n="hero.cta.resume">Download Résumé</span>
             </a>
           </div>
           <div class="hero-socials reveal d5">
@@ -680,10 +696,10 @@
 
       <div class="wrap">
         <div class="stats reveal">
-          <div class="stat"><div class="num" data-count="3" data-suffix="+">0</div><div class="label">Years experience</div></div>
-          <div class="stat"><div class="num" data-count="3">0</div><div class="label">Global companies</div></div>
-          <div class="stat"><div class="num" data-count="20" data-suffix="+">0</div><div class="label">Certifications</div></div>
-          <div class="stat"><div class="num" data-count="2">0</div><div class="label">Degrees earned</div></div>
+          <div class="stat"><div class="num" data-count="3" data-suffix="+">0</div><div class="label" data-i18n="stats.years">Years experience</div></div>
+          <div class="stat"><div class="num" data-count="3">0</div><div class="label" data-i18n="stats.companies">Global companies</div></div>
+          <div class="stat"><div class="num" data-count="20" data-suffix="+">0</div><div class="label" data-i18n="stats.certs">Certifications</div></div>
+          <div class="stat"><div class="num" data-count="2">0</div><div class="label" data-i18n="stats.degrees">Degrees earned</div></div>
         </div>
       </div>
     </section>
@@ -692,12 +708,12 @@
     <section id="about">
       <div class="wrap about-grid">
         <div class="reveal">
-          <span class="eyebrow">About</span>
-          <p class="about-lead" style="margin-top:18px;">
+          <span class="eyebrow" data-i18n="about.eyebrow">About</span>
+          <p class="about-lead" style="margin-top:18px;" data-i18n="about.lead">
             I turn analytical insight into <span class="hl">impactful, value-driven solutions</span> —
             bridging technology, product strategy and business operations.
           </p>
-          <p class="about-sub">
+          <p class="about-sub" data-i18n="about.sub">
             Across 3+ years in logistics, healthcare and life sciences, I've led enterprise SAP
             rollouts, optimised business processes and built dashboards that drive decisions. With a
             strong bias for action, I stay close to the data that proves a product is working — and to
@@ -707,23 +723,23 @@
         <div class="focus-cards reveal d2">
           <div class="focus-card">
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
-            <h4>Discovery &amp; Prioritization</h4>
-            <p>Customer discovery and market research to find the problems worth solving.</p>
+            <h4 data-i18n="about.card1.title">Discovery &amp; Prioritization</h4>
+            <p data-i18n="about.card1.body">Customer discovery and market research to find the problems worth solving.</p>
           </div>
           <div class="focus-card">
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div>
-            <h4>Roadmapping</h4>
-            <p>Roadmapping and backlog management that align teams around real value.</p>
+            <h4 data-i18n="about.card2.title">Roadmapping</h4>
+            <p data-i18n="about.card2.body">Roadmapping and backlog management that align teams around real value.</p>
           </div>
           <div class="focus-card">
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.2-8.5"/><path d="M22 4 12 14.01l-3-3"/></svg></div>
-            <h4>Agile Delivery</h4>
-            <p>Translating requirements into clear, shippable user stories, sprint by sprint.</p>
+            <h4 data-i18n="about.card3.title">Agile Delivery</h4>
+            <p data-i18n="about.card3.body">Translating requirements into clear, shippable user stories, sprint by sprint.</p>
           </div>
           <div class="focus-card">
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/><path d="M19 8v6M22 11h-6"/></svg></div>
-            <h4>Stakeholder Alignment</h4>
-            <p>Cross-functional collaboration that keeps product and business in lockstep.</p>
+            <h4 data-i18n="about.card4.title">Stakeholder Alignment</h4>
+            <p data-i18n="about.card4.body">Cross-functional collaboration that keeps product and business in lockstep.</p>
           </div>
         </div>
       </div>
@@ -733,9 +749,9 @@
     <section id="experience">
       <div class="wrap">
         <div class="section-head reveal">
-          <span class="eyebrow">Career</span>
-          <h2>Experience</h2>
-          <p>Bridging technology, product strategy and business operations across logistics, healthcare and life sciences.</p>
+          <span class="eyebrow" data-i18n="exp.eyebrow">Career</span>
+          <h2 data-i18n="exp.title">Experience</h2>
+          <p data-i18n="exp.intro">Bridging technology, product strategy and business operations across logistics, healthcare and life sciences.</p>
         </div>
 
         <div class="timeline">
@@ -743,17 +759,17 @@
             <span class="node"></span>
             <div class="t-card">
               <div class="t-top">
-                <h3 class="t-role">Product Application Manager — SAP</h3>
-                <span class="t-date">Oct 2024 — Present</span>
+                <h3 class="t-role" data-i18n="exp.job1.role">Product Application Manager — SAP</h3>
+                <span class="t-date" data-i18n="exp.job1.date">Oct 2024 — Present</span>
               </div>
               <div class="t-company">
                 <a href="https://www.dhl.com" target="_blank" rel="noopener">DHL eCommerce</a>
               </div>
-              <div class="t-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Bonn, Germany</div>
+              <div class="t-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> <span data-i18n="exp.job1.loc">Bonn, Germany</span></div>
               <ul class="t-list">
-                <li>Manage end-to-end feature planning and the global rollout of <i>SAP S/4HANA (BRIM)</i> billing solutions across regional e-commerce entities.</li>
-                <li>Collaborate with cross-functional teams, translating product requirements into structured user stories with clear acceptance criteria.</li>
-                <li>Administer <i>SAP S/4HANA BRIM</i> authorizations — ensuring least-privilege access, segregation of duties and secure production-system governance.</li>
+                <li data-i18n="exp.job1.b1">Manage end-to-end feature planning and the global rollout of <i>SAP S/4HANA (BRIM)</i> billing solutions across regional e-commerce entities.</li>
+                <li data-i18n="exp.job1.b2">Collaborate with cross-functional teams, translating product requirements into structured user stories with clear acceptance criteria.</li>
+                <li data-i18n="exp.job1.b3">Administer <i>SAP S/4HANA BRIM</i> authorizations — ensuring least-privilege access, segregation of duties and secure production-system governance.</li>
               </ul>
             </div>
           </article>
@@ -762,18 +778,18 @@
             <span class="node"></span>
             <div class="t-card">
               <div class="t-top">
-                <h3 class="t-role">Global IT &amp; Business Process Manager</h3>
-                <span class="t-date">Jul 2022 — Sep 2024</span>
+                <h3 class="t-role" data-i18n="exp.job2.role">Global IT &amp; Business Process Manager</h3>
+                <span class="t-date" data-i18n="exp.job2.date">Jul 2022 — Sep 2024</span>
               </div>
               <div class="t-company">
                 <a href="https://www.fresenius-kabi.com" target="_blank" rel="noopener">Fresenius Kabi</a>
               </div>
-              <div class="t-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Bad Homburg, Germany · Part-time</div>
+              <div class="t-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> <span data-i18n="exp.job2.loc">Bad Homburg, Germany · Part-time</span></div>
               <ul class="t-list">
-                <li>Analysed business-process performance and presented comprehensive reports against established <b>KPIs</b>.</li>
-                <li>Drafted detailed documentation and facilitated training sessions to support adoption of new business processes.</li>
-                <li>Designed and executed internal strategies to enhance business-domain capabilities and optimise operations.</li>
-                <li>Contributed to a <i>demand-management</i> project focused on managing and forecasting demand effectively.</li>
+                <li data-i18n="exp.job2.b1">Analysed business-process performance and presented comprehensive reports against established <b>KPIs</b>.</li>
+                <li data-i18n="exp.job2.b2">Drafted detailed documentation and facilitated training sessions to support adoption of new business processes.</li>
+                <li data-i18n="exp.job2.b3">Designed and executed internal strategies to enhance business-domain capabilities and optimise operations.</li>
+                <li data-i18n="exp.job2.b4">Contributed to a <i>demand-management</i> project focused on managing and forecasting demand effectively.</li>
               </ul>
             </div>
           </article>
@@ -782,17 +798,17 @@
             <span class="node"></span>
             <div class="t-card">
               <div class="t-top">
-                <h3 class="t-role">Internal Communications &amp; Engagement Manager</h3>
-                <span class="t-date">Jan 2022 — Jul 2022</span>
+                <h3 class="t-role" data-i18n="exp.job3.role">Internal Communications &amp; Engagement Manager</h3>
+                <span class="t-date" data-i18n="exp.job3.date">Jan 2022 — Jul 2022</span>
               </div>
               <div class="t-company">
                 <a href="https://www.merckgroup.com" target="_blank" rel="noopener">Merck KGaA</a>
               </div>
-              <div class="t-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Darmstadt, Germany · Part-time</div>
+              <div class="t-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> <span data-i18n="exp.job3.loc">Darmstadt, Germany · Part-time</span></div>
               <ul class="t-list">
-                <li>Designed and implemented <b>dashboards</b> to enable in-depth analysis and improve internal-communications performance.</li>
-                <li>Re-strategised marketing and communication processes to enhance internal engagement and alignment.</li>
-                <li>Conducted detailed research analyses to develop innovative communication materials.</li>
+                <li data-i18n="exp.job3.b1">Designed and implemented <b>dashboards</b> to enable in-depth analysis and improve internal-communications performance.</li>
+                <li data-i18n="exp.job3.b2">Re-strategised marketing and communication processes to enhance internal engagement and alignment.</li>
+                <li data-i18n="exp.job3.b3">Conducted detailed research analyses to develop innovative communication materials.</li>
               </ul>
             </div>
           </article>
@@ -804,28 +820,28 @@
     <section id="skills">
       <div class="wrap">
         <div class="section-head reveal">
-          <span class="eyebrow">Toolbox</span>
-          <h2>Key Skills</h2>
-          <p>The methods I work by and the tools I work with, day to day.</p>
+          <span class="eyebrow" data-i18n="skills.eyebrow">Toolbox</span>
+          <h2 data-i18n="skills.title">Key Skills</h2>
+          <p data-i18n="skills.intro">The methods I work by and the tools I work with, day to day.</p>
         </div>
 
         <div class="skill-cols">
           <div class="skill-block reveal">
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg></div>
-            <h3>Product Expertise</h3>
+            <h3 data-i18n="skills.block1">Product Expertise</h3>
             <div class="chips">
               <span class="chip">Agile</span>
-              <span class="chip">Discovery &amp; Prioritization</span>
+              <span class="chip" data-i18n="skills.chip.discovery">Discovery &amp; Prioritization</span>
               <span class="chip">Roadmapping</span>
-              <span class="chip">Backlog Management</span>
-              <span class="chip">Market Research</span>
-              <span class="chip">Stakeholder Alignment</span>
+              <span class="chip" data-i18n="skills.chip.backlog">Backlog Management</span>
+              <span class="chip" data-i18n="skills.chip.market">Market Research</span>
+              <span class="chip" data-i18n="skills.chip.stakeholder">Stakeholder Alignment</span>
             </div>
           </div>
 
           <div class="skill-block reveal d2">
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6l-6 6a2 2 0 1 0 2.8 2.8l6-6a4 4 0 0 0 5.6-5.6l-2.5 2.5-2.1-2.1z"/></svg></div>
-            <h3>Application Expertise</h3>
+            <h3 data-i18n="skills.block2">Application Expertise</h3>
             <div class="chips">
               <span class="chip">SAP</span>
               <span class="chip">ServiceNow</span>
@@ -841,7 +857,7 @@
 
           <div class="skill-block full reveal">
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="13" y="7" width="3" height="10"/></svg></div>
-            <h3>Data Analysis</h3>
+            <h3 data-i18n="skills.block3">Data Analysis</h3>
             <div class="chips">
               <span class="chip">SQL</span>
               <span class="chip">R</span>
@@ -858,16 +874,16 @@
     <section id="projects">
       <div class="wrap">
         <div class="section-head reveal">
-          <span class="eyebrow">Selected Work</span>
-          <h2>Projects</h2>
-          <p>Research that shaped how I think about trust, behaviour and decision-making.</p>
+          <span class="eyebrow" data-i18n="projects.eyebrow">Selected Work</span>
+          <h2 data-i18n="projects.title">Projects</h2>
+          <p data-i18n="projects.intro">Research that shaped how I think about trust, behaviour and decision-making.</p>
         </div>
 
         <article class="project-card reveal">
-          <span class="project-tag">Research Project</span>
-          <h3>Sponsorship Disclosure, Influencer Credibility &amp; Consumer Purchase Intention</h3>
-          <p class="project-date">Aug 2023</p>
-          <p>
+          <span class="project-tag" data-i18n="projects.tag">Research Project</span>
+          <h3 data-i18n="projects.p1.title">Sponsorship Disclosure, Influencer Credibility &amp; Consumer Purchase Intention</h3>
+          <p class="project-date" data-i18n="projects.p1.date">Aug 2023</p>
+          <p data-i18n="projects.p1.desc">
             A study examining how sponsorship disclosure shapes perceived influencer credibility and
             consumer purchase intention — surveying consumers to quantify the relationship between
             transparent sponsorships and buying behaviour.
@@ -875,7 +891,7 @@
           <div class="metric-row">
             <div class="metric">
               <div class="m-num">60%</div>
-              <div class="m-lab">of respondents felt disclosure positively impacts influencer credibility &amp; purchase intention</div>
+              <div class="m-lab" data-i18n="projects.p1.metric">of respondents felt disclosure positively impacts influencer credibility &amp; purchase intention</div>
             </div>
           </div>
         </article>
@@ -886,14 +902,14 @@
     <section id="certs">
       <div class="wrap">
         <div class="section-head reveal">
-          <span class="eyebrow">Credentials</span>
-          <h2>Certifications</h2>
-          <p>20+ credentials across product management, agile delivery, business analysis and AI &mdash; a selection of the most relevant below. Each card links to the verifiable credential.</p>
+          <span class="eyebrow" data-i18n="certs.eyebrow">Credentials</span>
+          <h2 data-i18n="certs.title">Certifications</h2>
+          <p data-i18n="certs.intro">20+ credentials across product management, agile delivery, business analysis and AI &mdash; a selection of the most relevant below. Each card links to the verifiable credential.</p>
         </div>
 
         <!-- Group 1: Product Management & Strategy -->
         <div class="cert-group reveal">
-          <p class="sub-title">Product Management &amp; Strategy</p>
+          <p class="sub-title" data-i18n="certs.group1">Product Management &amp; Strategy</p>
           <div class="cert-grid">
             <a class="cert-card reveal" href="https://www.linkedin.com/learning/certificates/667322faaf5826cf76b93c587da91e4e252b9e52fa429488d0cac8348ac1f302" target="_blank" rel="noopener">
               <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg></span>
@@ -971,7 +987,7 @@
 
         <!-- Group 2: Agile, Process & Business Analysis -->
         <div class="cert-group reveal">
-          <p class="sub-title">Agile, Process &amp; Business Analysis</p>
+          <p class="sub-title" data-i18n="certs.group2">Agile, Process &amp; Business Analysis</p>
           <div class="cert-grid">
             <a class="cert-card reveal" href="https://www.scrumstudy.com/certification/verify?type=SFC&amp;number=1076481" target="_blank" rel="noopener">
               <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/></svg></span>
@@ -1009,7 +1025,7 @@
               <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16.2 7.8l-2.9 6-6 2.9 2.9-6 6-2.9z"/></svg></span>
               <span class="c-body">
                 <h4>Business Analysis &amp; Process Management</h4>
-                <span class="c-sub">Professional Certification</span>
+                <span class="c-sub" data-i18n="certs.profcert">Professional Certification</span>
               </span>
             </a>
           </div>
@@ -1017,7 +1033,7 @@
 
         <!-- Group 3: AI, Data & Marketing -->
         <div class="cert-group reveal">
-          <p class="sub-title">AI, Data &amp; Marketing</p>
+          <p class="sub-title" data-i18n="certs.group3">AI, Data &amp; Marketing</p>
           <div class="cert-grid">
             <a class="cert-card reveal" href="certificates/artificial-intelligence-micro-certification.pdf" target="_blank" rel="noopener">
               <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span>
@@ -1059,27 +1075,27 @@
     <section id="education">
       <div class="wrap">
         <div class="section-head reveal">
-          <span class="eyebrow">Background</span>
-          <h2>Education &amp; Languages</h2>
+          <span class="eyebrow" data-i18n="edu.eyebrow">Background</span>
+          <h2 data-i18n="edu.title">Education &amp; Languages</h2>
         </div>
 
         <div class="edu-lang">
           <div class="reveal">
-            <p class="sub-title">Education</p>
+            <p class="sub-title" data-i18n="edu.eduTitle">Education</p>
             <div class="edu-card">
               <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg></span>
               <div>
                 <div class="deg">M.Sc. International Management</div>
-                <div class="uni">Goethe University</div>
+                <div class="uni" data-i18n="edu.uni1">Goethe University</div>
                 <div class="e-meta">
-                  <span>📍 Frankfurt, Germany</span><span>🗓 2020 — 2024</span>
+                  <span data-i18n="edu.loc1">📍 Frankfurt, Germany</span><span>🗓 2020 — 2024</span>
                 </div>
               </div>
             </div>
             <div class="edu-card">
               <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg></span>
               <div>
-                <div class="deg">B.Sc. Economics &amp; Marketing <span style="font-weight:600;color:var(--text-subtle);font-size:0.85rem;">· Double Major</span></div>
+                <div class="deg" data-i18n="edu.deg2">B.Sc. Economics &amp; Marketing <span style="font-weight:600;color:var(--text-subtle);font-size:0.85rem;">· Double Major</span></div>
                 <div class="uni">Lahore School of Economics</div>
                 <div class="e-meta">
                   <span>📍 Lahore, Pakistan</span><span>🗓 2016 — 2020</span>
@@ -1089,14 +1105,14 @@
           </div>
 
           <div class="reveal d2">
-            <p class="sub-title">Languages</p>
+            <p class="sub-title" data-i18n="edu.langTitle">Languages</p>
             <div class="lang-card">
               <div class="lang-item">
-                <div class="lang-top"><span class="lname">English</span><span class="llevel">Business Fluent</span></div>
+                <div class="lang-top"><span class="lname" data-i18n="edu.lang.en">English</span><span class="llevel" data-i18n="edu.lang.en.level">Business Fluent</span></div>
                 <div class="lang-bar"><span data-level="92" style="--lvl:92%"></span></div>
               </div>
               <div class="lang-item">
-                <div class="lang-top"><span class="lname">German</span><span class="llevel">Intermediate Proficiency</span></div>
+                <div class="lang-top"><span class="lname" data-i18n="edu.lang.de">German</span><span class="llevel" data-i18n="edu.lang.de.level">Intermediate Proficiency</span></div>
                 <div class="lang-bar"><span data-level="55" style="--lvl:55%"></span></div>
               </div>
             </div>
@@ -1109,21 +1125,21 @@
     <section id="contact">
       <div class="wrap">
         <div class="contact-card reveal">
-          <h2>Let's build something together</h2>
-          <p>I'm always happy to talk product, application management or new opportunities. Email or LinkedIn is the fastest way to reach me.</p>
+          <h2 data-i18n="contact.title">Let's build something together</h2>
+          <p data-i18n="contact.text">I'm always happy to talk product, application management or new opportunities. Email or LinkedIn is the fastest way to reach me.</p>
           <div class="contact-actions">
             <a class="btn btn-white" href="mailto:aaiman.naeem@gmail.com">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
-              Email me
+              <span data-i18n="contact.cta.email">Email me</span>
             </a>
             <a class="btn btn-outline-white" href="https://www.linkedin.com/in/aaimannaeem" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-              Connect on LinkedIn
+              <span data-i18n="contact.cta.linkedin">Connect on LinkedIn</span>
             </a>
           </div>
           <div class="contact-meta">
             <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg> aaiman.naeem@gmail.com</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Munich, Germany</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> <span data-i18n="contact.meta.loc">Munich, Germany</span></span>
           </div>
         </div>
       </div>
@@ -1141,7 +1157,7 @@
           <a href="mailto:aaiman.naeem@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></a>
         </div>
       </div>
-      <p class="foot-note">© <span id="year"></span> Aaiman Naeem · Product Application Manager, Munich · Built with HTML, CSS &amp; JavaScript.</p>
+      <p class="foot-note">© <span id="year"></span> <span data-i18n="footer.note">Aaiman Naeem · Product Application Manager, Munich · Built with HTML, CSS &amp; JavaScript.</span></p>
     </div>
   </footer>
 
@@ -1171,6 +1187,158 @@
       try { stored = localStorage.getItem('theme'); } catch (err) {}
       if (!stored) root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
     });
+
+    /* ---- Language toggle (English / German) ----
+       English lives in the markup as the default; German is swapped in from the
+       dictionary below. Any key missing from `de` falls back to its English source,
+       so untranslated items (proper nouns, tool names) stay as written. ---- */
+    var LANG_KEY = 'lang';
+    var i18nEls = document.querySelectorAll('[data-i18n]');
+    var originalEN = {};
+    i18nEls.forEach(function (el) { originalEN[el.getAttribute('data-i18n')] = el.innerHTML; });
+
+    var metaDesc = document.querySelector('meta[name="description"]');
+    var enDesc = metaDesc ? metaDesc.getAttribute('content') : '';
+
+    var de = {
+      'skip': 'Zum Inhalt springen',
+
+      'nav.about': 'Über mich',
+      'nav.experience': 'Erfahrung',
+      'nav.skills': 'Kompetenzen',
+      'nav.projects': 'Projekte',
+      'nav.certs': 'Zertifikate',
+      'nav.education': 'Ausbildung',
+      'nav.contact': 'Kontakt',
+
+      'hero.eyebrow': 'Product Application Manager · München, Deutschland',
+      'hero.h1': 'Hallo, ich bin <span class="accent-text">Aaiman&nbsp;Naeem</span>',
+      'hero.role': 'Ich verwandle datengetriebene Erkenntnisse in Produkte, die das Geschäft voranbringen.',
+      'hero.lead': 'Ergebnisorientierter Produktexperte mit ausgeprägter Umsetzungsstärke und der Leidenschaft, analytische und datengetriebene Erkenntnisse für Geschäftswachstum zu nutzen. Mehr als 3 Jahre Erfahrung in unterschiedlichen Branchen — als Brücke zwischen Technologie, Produktstrategie und Geschäftsbetrieb, um wirkungsvolle Lösungen zu liefern.',
+      'hero.cta.contact': 'Kontakt aufnehmen',
+      'hero.cta.resume': 'Lebenslauf herunterladen',
+
+      'stats.years': 'Jahre Erfahrung',
+      'stats.companies': 'Globale Unternehmen',
+      'stats.certs': 'Zertifikate',
+      'stats.degrees': 'Abschlüsse',
+
+      'about.eyebrow': 'Über mich',
+      'about.lead': 'Ich verwandle analytische Erkenntnisse in <span class="hl">wirkungsvolle, wertschöpfende Lösungen</span> — als Brücke zwischen Technologie, Produktstrategie und Geschäftsbetrieb.',
+      'about.sub': 'In über 3 Jahren in Logistik, Gesundheitswesen und Life Sciences habe ich unternehmensweite SAP-Rollouts geleitet, Geschäftsprozesse optimiert und Dashboards entwickelt, die Entscheidungen vorantreiben. Mit ausgeprägter Umsetzungsstärke bleibe ich nah an den Daten, die belegen, dass ein Produkt funktioniert — und an den Stakeholdern, die es zum Leben erwecken.',
+      'about.card1.title': 'Discovery &amp; Priorisierung',
+      'about.card1.body': 'Kundenanalyse und Marktforschung, um die Probleme zu finden, die es zu lösen lohnt.',
+      'about.card2.title': 'Roadmapping',
+      'about.card2.body': 'Roadmapping und Backlog-Management, das Teams auf echten Mehrwert ausrichtet.',
+      'about.card3.title': 'Agile Lieferung',
+      'about.card3.body': 'Anforderungen in klare, lieferbare User Stories übersetzen — Sprint für Sprint.',
+      'about.card4.title': 'Stakeholder-Abstimmung',
+      'about.card4.body': 'Bereichsübergreifende Zusammenarbeit, die Produkt und Geschäft im Gleichschritt hält.',
+
+      'exp.eyebrow': 'Werdegang',
+      'exp.title': 'Erfahrung',
+      'exp.intro': 'Als Brücke zwischen Technologie, Produktstrategie und Geschäftsbetrieb in Logistik, Gesundheitswesen und Life Sciences.',
+      'exp.job1.date': 'Okt. 2024 — Heute',
+      'exp.job1.loc': 'Bonn, Deutschland',
+      'exp.job1.b1': 'Verantwortung für die End-to-End-Feature-Planung und den weltweiten Rollout von <i>SAP S/4HANA (BRIM)</i>-Abrechnungslösungen über regionale E-Commerce-Einheiten hinweg.',
+      'exp.job1.b2': 'Zusammenarbeit mit bereichsübergreifenden Teams; Übersetzung von Produktanforderungen in strukturierte User Stories mit klaren Akzeptanzkriterien.',
+      'exp.job1.b3': 'Administration der <i>SAP S/4HANA BRIM</i>-Berechtigungen — Sicherstellung von Least-Privilege-Zugriffen, Funktionstrennung und sicherer Governance der Produktivsysteme.',
+      'exp.job2.date': 'Jul. 2022 — Sep. 2024',
+      'exp.job2.loc': 'Bad Homburg, Deutschland · Teilzeit',
+      'exp.job2.b1': 'Analyse der Geschäftsprozessleistung und Erstellung umfassender Berichte anhand etablierter <b>KPIs</b>.',
+      'exp.job2.b2': 'Erstellung detaillierter Dokumentationen und Durchführung von Schulungen zur Einführung neuer Geschäftsprozesse.',
+      'exp.job2.b3': 'Entwicklung und Umsetzung interner Strategien zur Stärkung der Fachbereichskompetenzen und Optimierung der Abläufe.',
+      'exp.job2.b4': 'Mitarbeit an einem <i>Demand-Management</i>-Projekt zur effektiven Steuerung und Prognose der Nachfrage.',
+      'exp.job3.date': 'Jan. 2022 — Jul. 2022',
+      'exp.job3.loc': 'Darmstadt, Deutschland · Teilzeit',
+      'exp.job3.b1': 'Konzeption und Implementierung von <b>Dashboards</b> für tiefgehende Analysen und zur Verbesserung der internen Kommunikation.',
+      'exp.job3.b2': 'Neuausrichtung der Marketing- und Kommunikationsprozesse zur Steigerung von Engagement und Abstimmung im Unternehmen.',
+      'exp.job3.b3': 'Durchführung detaillierter Recherchen zur Entwicklung innovativer Kommunikationsmaterialien.',
+
+      'skills.eyebrow': 'Werkzeugkasten',
+      'skills.title': 'Kernkompetenzen',
+      'skills.intro': 'Die Methoden, nach denen ich arbeite, und die Tools, mit denen ich täglich arbeite.',
+      'skills.block1': 'Produkt-Expertise',
+      'skills.block2': 'Anwendungs-Expertise',
+      'skills.block3': 'Datenanalyse',
+      'skills.chip.discovery': 'Discovery &amp; Priorisierung',
+      'skills.chip.backlog': 'Backlog-Management',
+      'skills.chip.market': 'Marktforschung',
+      'skills.chip.stakeholder': 'Stakeholder-Abstimmung',
+
+      'projects.eyebrow': 'Ausgewählte Arbeiten',
+      'projects.title': 'Projekte',
+      'projects.intro': 'Forschung, die mein Denken über Vertrauen, Verhalten und Entscheidungsfindung geprägt hat.',
+      'projects.tag': 'Forschungsprojekt',
+      'projects.p1.title': 'Sponsoring-Kennzeichnung, Glaubwürdigkeit von Influencern &amp; Kaufabsicht der Verbraucher',
+      'projects.p1.date': 'Aug. 2023',
+      'projects.p1.desc': 'Eine Studie darüber, wie die Kennzeichnung von Sponsoring die wahrgenommene Glaubwürdigkeit von Influencern und die Kaufabsicht der Verbraucher beeinflusst — mit einer Verbraucherbefragung zur Quantifizierung des Zusammenhangs zwischen transparentem Sponsoring und Kaufverhalten.',
+      'projects.p1.metric': 'der Befragten empfanden, dass Kennzeichnung die Glaubwürdigkeit von Influencern &amp; die Kaufabsicht positiv beeinflusst',
+
+      'certs.eyebrow': 'Nachweise',
+      'certs.title': 'Zertifikate',
+      'certs.intro': 'Mehr als 20 Nachweise in Produktmanagement, agiler Lieferung, Business-Analyse und KI &mdash; eine Auswahl der relevantesten unten. Jede Karte verlinkt auf den überprüfbaren Nachweis.',
+      'certs.group1': 'Produktmanagement &amp; Strategie',
+      'certs.group2': 'Agile, Prozesse &amp; Business-Analyse',
+      'certs.group3': 'KI, Daten &amp; Marketing',
+      'certs.profcert': 'Berufszertifikat',
+
+      'edu.eyebrow': 'Hintergrund',
+      'edu.title': 'Ausbildung &amp; Sprachen',
+      'edu.eduTitle': 'Ausbildung',
+      'edu.uni1': 'Goethe-Universität',
+      'edu.loc1': '📍 Frankfurt, Deutschland',
+      'edu.deg2': 'B.Sc. Economics &amp; Marketing <span style="font-weight:600;color:var(--text-subtle);font-size:0.85rem;">· Doppelhauptfach</span>',
+      'edu.langTitle': 'Sprachen',
+      'edu.lang.en': 'Englisch',
+      'edu.lang.en.level': 'Verhandlungssicher',
+      'edu.lang.de': 'Deutsch',
+      'edu.lang.de.level': 'Mittelstufe',
+
+      'contact.title': 'Lassen Sie uns gemeinsam etwas aufbauen',
+      'contact.text': 'Ich spreche jederzeit gern über Produkt, Application Management oder neue Möglichkeiten. Am schnellsten erreichen Sie mich per E-Mail oder LinkedIn.',
+      'contact.cta.email': 'E-Mail schreiben',
+      'contact.cta.linkedin': 'Auf LinkedIn vernetzen',
+      'contact.meta.loc': 'München, Deutschland',
+
+      'footer.note': 'Aaiman Naeem · Product Application Manager, München · Erstellt mit HTML, CSS &amp; JavaScript.',
+
+      'meta.description': 'Aaiman Naeem ist ein ergebnisorientierter Produktexperte aus München, der Technologie, Produktstrategie und Geschäftsbetrieb verbindet. Product Application Manager (SAP) bei DHL eCommerce.'
+    };
+
+    var langLabel = document.getElementById('langLabel');
+    var langToggle = document.getElementById('langToggle');
+
+    function applyLang(lang) {
+      var useDe = lang === 'de';
+      i18nEls.forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        var val = useDe && de[key] != null ? de[key] : originalEN[key];
+        if (val != null) el.innerHTML = val;
+      });
+      if (metaDesc) metaDesc.setAttribute('content', useDe && de['meta.description'] ? de['meta.description'] : enDesc);
+      root.setAttribute('lang', lang);
+      if (langLabel) langLabel.textContent = useDe ? 'EN' : 'DE';
+      if (langToggle) langToggle.setAttribute('aria-label', useDe ? 'Switch to English' : 'Auf Deutsch umschalten');
+    }
+
+    function currentLang() {
+      var stored;
+      try { stored = localStorage.getItem(LANG_KEY); } catch (e) {}
+      if (stored === 'de' || stored === 'en') return stored;
+      var nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      return nav.indexOf('de') === 0 ? 'de' : 'en';
+    }
+
+    applyLang(currentLang());
+
+    if (langToggle) {
+      langToggle.addEventListener('click', function () {
+        var next = root.getAttribute('lang') === 'de' ? 'en' : 'de';
+        applyLang(next);
+        try { localStorage.setItem(LANG_KEY, next); } catch (e) {}
+      });
+    }
 
     /* ---- Mobile menu ---- */
     var hamburger = document.getElementById('hamburger');

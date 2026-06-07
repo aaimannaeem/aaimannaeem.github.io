@@ -15,6 +15,7 @@ projects · certifications · education & languages · contact.
 
 - 🎨 Modern UI: gradient accents, glassmorphism nav, hero glow + grid, floating photo, scroll reveals, animated counters & language bars
 - 🌗 Light & dark modes — follows the OS by default, with a manual toggle I remember via `localStorage`
+- 🌍 Bilingual (English / German) — follows the browser language by default, with an EN/DE toggle in the nav that I remember via `localStorage`
 - 📱 Fully responsive / mobile-friendly with a slide-down menu
 - ♿ Accessible: semantic HTML, skip link, keyboard focus styles, `prefers-reduced-motion` support
 - 🔎 SEO-ready: meta + Open Graph tags, JSON-LD `Person` schema, `sitemap.xml`, `robots.txt`
