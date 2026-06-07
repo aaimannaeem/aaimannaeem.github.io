@@ -13,11 +13,11 @@
 
 # Long-cache immutable static assets
 [[headers]]
-  for = "/me.png"
+  for = "/assets/me.png"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/favicon.svg"
+  for = "/assets/favicon.svg"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"

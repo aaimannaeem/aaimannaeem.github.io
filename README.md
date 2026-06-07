@@ -26,9 +26,7 @@ projects · certifications · education & languages · contact.
 | --- | --- |
 | `index.html` | The entire site — page content, inlined `<style>` (light/dark theme tokens) and inlined `<script>` (theme toggle, mobile menu, scroll reveals, counters, language bars, scroll spy) |
 | `certificates/` | PDF copies of credentials I link to from the certifications section |
-| `favicon.svg` | Site icon (AN monogram) |
-| `me.png` | My profile photo |
-| `Resume_Naeem.pdf` | My downloadable résumé |
+| `assets/` | Static assets: `favicon.svg` (site icon — AN monogram), `me.png` (profile photo), `Resume_Naeem.pdf` (downloadable résumé) |
 | `CNAME` | Custom domain for GitHub Pages |
 | `sitemap.xml` / `robots.txt` | SEO / crawler hints |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is |
