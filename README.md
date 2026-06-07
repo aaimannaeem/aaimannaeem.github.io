@@ -30,7 +30,6 @@ projects · certifications · education & languages · contact.
 | `me.png` | My profile photo |
 | `Resume_Naeem.pdf` | My downloadable résumé |
 | `CNAME` | Custom domain for GitHub Pages |
-| `netlify.toml` | Netlify config (no build step) + security headers |
 | `sitemap.xml` / `robots.txt` | SEO / crawler hints |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is |
 
@@ -48,9 +47,6 @@ python -m http.server 8080
 **GitHub Pages** (already configured): I push to the default branch of `aaimannaeem.github.io`.
 Settings → Pages → Source: *Deploy from branch* → `main` / root. The `CNAME` keeps my custom
 domain.
-
-**Netlify**: drag-and-drop the folder, or connect the repo with **no build command** and a
-publish directory of `/` (the repository root).
 
 ## Editing content
 
