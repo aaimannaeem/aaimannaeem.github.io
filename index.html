@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aaiman Naeem — Product &amp; Application Manager (SAP)</title>
+  <title>Aaiman Naeem — Product Application Manager (SAP)</title>
   <meta name="description" content="Aaiman Naeem is an outcome-driven Product professional based in Munich, bridging technology, product strategy and business operations. Product Application Manager (SAP) at DHL eCommerce." />
   <meta name="author" content="Aaiman Naeem" />
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
@@ -11,7 +11,7 @@
 
   <!-- Open Graph / social -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Aaiman Naeem — Product &amp; Application Manager (SAP)" />
+  <meta property="og:title" content="Aaiman Naeem — Product Application Manager (SAP)" />
   <meta property="og:description" content="Outcome-driven Product professional in Munich. Product Application Manager (SAP) at DHL eCommerce." />
   <meta property="og:image" content="https://aaimannaeem.com/me.png" />
   <meta property="og:url" content="https://aaimannaeem.com" />
@@ -431,6 +431,21 @@
   .cert-card .c-body { min-width: 0; }
   .cert-card h4 { font-size: 0.97rem; font-weight: 600; line-height: 1.35; color: var(--text); }
   .cert-card .c-sub { font-size: 0.84rem; color: var(--text-subtle); margin-top: 6px; }
+  /* Clickable credential cards */
+  a.cert-card { position: relative; padding-right: 34px; }
+  a.cert-card::after {
+    content: ""; position: absolute; top: 16px; right: 16px; width: 15px; height: 15px;
+    background-color: var(--text-subtle); opacity: 0; transform: translate(-2px, 2px);
+    transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+    -webkit-mask: no-repeat center / contain; mask: no-repeat center / contain;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E");
+  }
+  a.cert-card:hover::after { opacity: 1; transform: translate(0, 0); background-color: var(--accent); }
+  /* Certification groups */
+  .cert-group { margin-bottom: 40px; }
+  .cert-group:last-child { margin-bottom: 0; }
+  .cert-group .sub-title { margin-bottom: 18px; }
 
   /* ---------- Education + Languages ---------- */
   .edu-lang { display: grid; grid-template-columns: 1.4fr 1fr; gap: 28px; align-items: start; }
@@ -575,7 +590,7 @@
     "image": "https://aaimannaeem.com/me.png",
     "email": "mailto:aaiman.naeem@gmail.com",
     "address": { "@type": "PostalAddress", "addressLocality": "Munich", "addressCountry": "DE" },
-    "sameAs": ["https://www.linkedin.com/in/aaimannaeem"],
+    "sameAs": ["https://www.linkedin.com/in/aaimannaeem", "https://github.com/aaimannaeem"],
     "alumniOf": [
       { "@type": "CollegeOrUniversity", "name": "Goethe University Frankfurt" },
       { "@type": "CollegeOrUniversity", "name": "Lahore School of Economics" }
@@ -645,6 +660,9 @@
             <a class="social-btn" href="https://www.linkedin.com/in/aaimannaeem" target="_blank" rel="noopener" aria-label="LinkedIn">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
             </a>
+            <a class="social-btn" href="https://github.com/aaimannaeem" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.21 11.19.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.34-1.73-1.34-1.73-1.09-.73.08-.72.08-.72 1.21.08 1.84 1.22 1.84 1.22 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.5 11.5 0 0 1 3-.4c1.02 0 2.05.13 3 .4 2.29-1.53 3.3-1.21 3.3-1.21.66 1.64.24 2.86.12 3.16.77.83 1.24 1.88 1.24 3.17 0 4.53-2.81 5.53-5.49 5.82.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .31.21.68.83.56C20.56 21.91 24 17.5 24 12.29 24 5.78 18.63.5 12 .5z"/></svg>
+            </a>
             <a class="social-btn" href="mailto:aaiman.naeem@gmail.com" aria-label="Email">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
             </a>
@@ -663,7 +681,7 @@
         <div class="stats reveal">
           <div class="stat"><div class="num" data-count="3" data-suffix="+">0</div><div class="label">Years experience</div></div>
           <div class="stat"><div class="num" data-count="3">0</div><div class="label">Global companies</div></div>
-          <div class="stat"><div class="num" data-count="4">0</div><div class="label">Certifications</div></div>
+          <div class="stat"><div class="num" data-count="20" data-suffix="+">0</div><div class="label">Certifications</div></div>
           <div class="stat"><div class="num" data-count="2">0</div><div class="label">Degrees earned</div></div>
         </div>
       </div>
@@ -869,36 +887,168 @@
         <div class="section-head reveal">
           <span class="eyebrow">Credentials</span>
           <h2>Certifications</h2>
-          <p>Continuous learning across agile delivery, product management and discovery.</p>
+          <p>20+ credentials across product management, agile delivery, business analysis and AI &mdash; a selection of the most relevant below. Each card links to the verifiable credential.</p>
         </div>
 
-        <div class="cert-grid">
-          <div class="cert-card reveal">
-            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/></svg></span>
-            <span class="c-body">
-              <h4>Scrum Fundamentals Certified (SFC™)</h4>
-            </span>
-          </div>
+        <!-- Group 1: Product Management & Strategy -->
+        <div class="cert-group reveal">
+          <p class="sub-title">Product Management &amp; Strategy</p>
+          <div class="cert-grid">
+            <a class="cert-card reveal" href="https://www.linkedin.com/learning/certificates/667322faaf5826cf76b93c587da91e4e252b9e52fa429488d0cac8348ac1f302" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg></span>
+              <span class="c-body">
+                <h4>Aha! Product Management Professional Certificate</h4>
+                <span class="c-sub">LinkedIn Learning</span>
+              </span>
+            </a>
 
-          <div class="cert-card reveal d2">
-            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16.2 7.8l-2.9 6-6 2.9 2.9-6 6-2.9z"/></svg></span>
-            <span class="c-body">
-              <h4>Explore a Career in Product Management</h4>
-            </span>
-          </div>
+            <a class="cert-card reveal d2" href="https://www.credly.com/badges/f0248f42-5c80-40ae-910a-3ecb1c48b4a1/public_url" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span>
+              <span class="c-body">
+                <h4>AI for Product Management</h4>
+                <span class="c-sub">Product School</span>
+              </span>
+            </a>
 
-          <div class="cert-card reveal">
-            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg></span>
-            <span class="c-body">
-              <h4>Aha! Product Management Professional Certificate</h4>
-            </span>
-          </div>
+            <a class="cert-card reveal" href="https://www.credly.com/badges/dda8d492-0fb4-4b50-aafa-5722e25a365a/public_url" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
+              <span class="c-body">
+                <h4>Product Discovery Micro-Certification (PDC)™</h4>
+                <span class="c-sub">Product School</span>
+              </span>
+            </a>
 
-          <div class="cert-card reveal d2">
-            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
-            <span class="c-body">
-              <h4>Product Discovery Micro-Certification (PDC)™</h4>
-            </span>
+            <a class="cert-card reveal d2" href="certificates/product-strategy-micro-certification.pdf" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>
+              <span class="c-body">
+                <h4>Product Strategy Micro-Certification (PSC)™</h4>
+                <span class="c-sub">Product School</span>
+              </span>
+            </a>
+
+            <a class="cert-card reveal" href="certificates/product-roadmapping-micro-certification.pdf" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg></span>
+              <span class="c-body">
+                <h4>Product Roadmapping Micro-Certification (PRC)™</h4>
+                <span class="c-sub">Product School</span>
+              </span>
+            </a>
+
+            <a class="cert-card reveal d2" href="https://www.credly.com/badges/6afc2675-6c4f-4f48-b177-a1dc99d32918/public_url" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="13" y="7" width="3" height="10"/></svg></span>
+              <span class="c-body">
+                <h4>Product Analytics Micro-Certification (PAC)™</h4>
+                <span class="c-sub">Product School</span>
+              </span>
+            </a>
+
+            <a class="cert-card reveal" href="certificates/product-experimentation-micro-certification.pdf" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"/><path d="M10 3v5L5 18a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-10V3"/><path d="M7.5 14h9"/></svg></span>
+              <span class="c-body">
+                <h4>Product Experimentation Micro-Certification (PEC)™</h4>
+                <span class="c-sub">Product School</span>
+              </span>
+            </a>
+
+            <a class="cert-card reveal d2" href="certificates/product-launches-micro-certification.pdf" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span>
+              <span class="c-body">
+                <h4>Product Launches Micro-Certification (PRLC)™</h4>
+                <span class="c-sub">Product School</span>
+              </span>
+            </a>
+
+            <a class="cert-card reveal" href="https://www.credly.com/badges/6f20ce05-eb34-4c9b-b7a9-8eb16b9d3516/public_url" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></span>
+              <span class="c-body">
+                <h4>Product-led Certification</h4>
+                <span class="c-sub">Product School</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Group 2: Agile, Process & Business Analysis -->
+        <div class="cert-group reveal">
+          <p class="sub-title">Agile, Process &amp; Business Analysis</p>
+          <div class="cert-grid">
+            <a class="cert-card reveal" href="https://www.scrumstudy.com/certification/verify?type=SFC&amp;number=1076481" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/></svg></span>
+              <span class="c-body">
+                <h4>Scrum Fundamentals Certified (SFC™)</h4>
+                <span class="c-sub">SCRUMstudy</span>
+              </span>
+            </a>
+
+            <a class="cert-card reveal d2" href="https://www.linkedin.com/learning/certificates/f1ffac6e70097f187ea09ddfa598e2ecea179cad5fe967e28a82a2e236386ae2" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+              <span class="c-body">
+                <h4>Become a Six Sigma Black Belt</h4>
+                <span class="c-sub">LinkedIn Learning</span>
+              </span>
+            </a>
+
+            <a class="cert-card reveal" href="https://www.linkedin.com/learning/certificates/666a67c5a9410e96a537e6a16bbeb09d40d0adae5b3312d4b310447f0555a045" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/><path d="M19 8v6M22 11h-6"/></svg></span>
+              <span class="c-body">
+                <h4>Getting Started as a Business Analyst</h4>
+                <span class="c-sub">LinkedIn Learning</span>
+              </span>
+            </a>
+
+            <a class="cert-card reveal d2" href="https://www.linkedin.com/learning/certificates/733cf0eb49cf8466dbc954a464169f91afb3c1731f8c1448062aa5b1d2da7573" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span>
+              <span class="c-body">
+                <h4>AI Essentials for Business Analysis</h4>
+                <span class="c-sub">LinkedIn Learning</span>
+              </span>
+            </a>
+
+            <a class="cert-card reveal" href="certificates/business-analysis-process-management.pdf" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16.2 7.8l-2.9 6-6 2.9 2.9-6 6-2.9z"/></svg></span>
+              <span class="c-body">
+                <h4>Business Analysis &amp; Process Management</h4>
+                <span class="c-sub">Professional Certification</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Group 3: AI, Data & Marketing -->
+        <div class="cert-group reveal">
+          <p class="sub-title">AI, Data &amp; Marketing</p>
+          <div class="cert-grid">
+            <a class="cert-card reveal" href="certificates/artificial-intelligence-micro-certification.pdf" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span>
+              <span class="c-body">
+                <h4>Artificial Intelligence Micro-Certification (AIC)™</h4>
+                <span class="c-sub">Product School</span>
+              </span>
+            </a>
+
+            <a class="cert-card reveal d2" href="https://www.credly.com/badges/b53a93e9-b39f-4f54-b2a1-7f2a25ccb809/public_url" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16.2 7.8l-2.9 6-6 2.9 2.9-6 6-2.9z"/></svg></span>
+              <span class="c-body">
+                <h4>Digital Adoption Certification</h4>
+                <span class="c-sub">Product School</span>
+              </span>
+            </a>
+
+            <a class="cert-card reveal" href="certificates/google-analytics-certification.pdf" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></span>
+              <span class="c-body">
+                <h4>Google Analytics Certification</h4>
+                <span class="c-sub">Google</span>
+              </span>
+            </a>
+
+            <a class="cert-card reveal d2" href="certificates/google-ads-measurement-certification.pdf" target="_blank" rel="noopener">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>
+              <span class="c-body">
+                <h4>Google Ads &mdash; Measurement Certification</h4>
+                <span class="c-sub">Google</span>
+              </span>
+            </a>
           </div>
         </div>
       </div>
@@ -986,10 +1136,11 @@
         <a href="#home" class="brand"><span class="logo">AN</span><span>Aaiman Naeem</span></a>
         <div class="foot-links">
           <a href="https://www.linkedin.com/in/aaimannaeem" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
+          <a href="https://github.com/aaimannaeem" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.21 11.19.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.34-1.73-1.34-1.73-1.09-.73.08-.72.08-.72 1.21.08 1.84 1.22 1.84 1.22 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.5 11.5 0 0 1 3-.4c1.02 0 2.05.13 3 .4 2.29-1.53 3.3-1.21 3.3-1.21.66 1.64.24 2.86.12 3.16.77.83 1.24 1.88 1.24 3.17 0 4.53-2.81 5.53-5.49 5.82.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .31.21.68.83.56C20.56 21.91 24 17.5 24 12.29 24 5.78 18.63.5 12 .5z"/></svg></a>
           <a href="mailto:aaiman.naeem@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></a>
         </div>
       </div>
-      <p class="foot-note">© <span id="year"></span> Aaiman Naeem · Product &amp; Application Manager, Munich · Built with HTML, CSS &amp; JavaScript.</p>
+      <p class="foot-note">© <span id="year"></span> Aaiman Naeem · Product Application Manager, Munich · Built with HTML, CSS &amp; JavaScript.</p>
     </div>
   </footer>
 
