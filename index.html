@@ -185,6 +185,7 @@
     border-color: var(--border); box-shadow: var(--shadow-sm);
   }
   .btn-ghost:hover { transform: translateY(-2px); border-color: var(--accent-ring); color: var(--accent); }
+  .btn:active { transform: translateY(0) scale(0.97); }
 
   /* ---------- Navbar ---------- */
   header {
@@ -214,7 +215,7 @@
     transition: color 0.2s ease, background 0.2s ease;
   }
   .nav-links a:hover { color: var(--text); background: var(--surface-2); }
-  .nav-links a.active { color: var(--accent); }
+  .nav-links a.active { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
 
   .nav-actions { display: flex; align-items: center; gap: 10px; }
 
@@ -225,6 +226,7 @@
     color: var(--text-muted); transition: all 0.2s ease;
   }
   .icon-btn:hover { color: var(--accent); border-color: var(--accent-ring); transform: translateY(-1px); }
+  .icon-btn:active { transform: scale(0.94); }
   .icon-btn svg { width: 20px; height: 20px; }
   .theme-toggle .moon { display: none; }
   [data-theme="dark"] .theme-toggle .sun { display: none; }
@@ -287,6 +289,7 @@
     transition: all 0.2s ease;
   }
   .social-btn:hover { color: #fff; background: var(--accent-grad); border-color: transparent; transform: translateY(-3px); }
+  .social-btn:active { transform: scale(0.94); }
   .social-btn svg { width: 21px; height: 21px; }
 
   /* Photo */
@@ -448,13 +451,14 @@
   a.cert-card { position: relative; padding-right: 34px; }
   a.cert-card::after {
     content: ""; position: absolute; top: 16px; right: 16px; width: 15px; height: 15px;
-    background-color: var(--text-subtle); opacity: 0; transform: translate(-2px, 2px);
+    background-color: var(--text-subtle); opacity: 0.45;
     transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
     -webkit-mask: no-repeat center / contain; mask: no-repeat center / contain;
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E");
   }
-  a.cert-card:hover::after { opacity: 1; transform: translate(0, 0); background-color: var(--accent); }
+  a.cert-card:hover::after,
+  a.cert-card:focus-visible::after { opacity: 1; transform: translate(1px, -1px); background-color: var(--accent); }
   /* Certification groups */
   .cert-group { margin-bottom: 40px; }
   .cert-group:last-child { margin-bottom: 0; }
@@ -525,6 +529,36 @@
   .foot-links svg { width: 19px; height: 19px; }
   .foot-note { width: 100%; text-align: center; color: var(--text-subtle); font-size: 0.85rem; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
 
+  /* ---------- Scroll progress / back-to-top / nav scrim ---------- */
+  .scroll-progress {
+    position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 101;
+    background: var(--accent-grad);
+    transform-origin: 0 50%; transform: scaleX(0);
+    pointer-events: none;
+  }
+  .to-top {
+    position: fixed; right: 22px; bottom: 22px; z-index: 90;
+    width: 46px; height: 46px; border-radius: 50%;
+    display: grid; place-items: center; cursor: pointer;
+    background: var(--surface); color: var(--text-muted);
+    border: 1px solid var(--border); box-shadow: var(--shadow-md);
+    opacity: 0; visibility: hidden; transform: translateY(12px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease,
+                color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  }
+  .to-top.show { opacity: 1; visibility: visible; transform: none; }
+  .to-top:hover { color: #fff; background: var(--accent-grad); border-color: transparent; }
+  .to-top:active { transform: scale(0.94); }
+  .to-top svg { width: 20px; height: 20px; }
+  .nav-scrim {
+    position: fixed; inset: 0; z-index: 99;
+    background: rgba(10, 15, 31, 0.45);
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .nav-scrim.show { opacity: 1; visibility: visible; }
+  body.menu-open { overflow: hidden; }
+
   /* ---------- Reveal animation ---------- */
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
   .reveal.visible { opacity: 1; transform: none; }
@@ -569,6 +603,7 @@
     .contact-card { padding: 48px 26px; }
     .project-card { padding: 28px 24px; }
     .skill-block { padding: 26px; }
+    .to-top { right: 16px; bottom: 16px; width: 44px; height: 44px; }
   }
 
   @media (max-width: 460px) {
@@ -585,7 +620,8 @@
   /* ---------- Print ---------- */
   @media print {
     header, .hero::before, .hero::after, .hero-cta, .hero-socials, .photo-frame .orb,
-    .contact-actions, .hamburger, .theme-toggle, .lang-toggle { display: none !important; }
+    .contact-actions, .hamburger, .theme-toggle, .lang-toggle,
+    .scroll-progress, .to-top, .nav-scrim { display: none !important; }
     body { color: #000; background: #fff; }
     section, .hero { padding: 16px 0; }
   }
@@ -615,6 +651,7 @@
 </head>
 <body>
   <a class="skip-link" href="#about" data-i18n="skip">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <!-- ===================== NAV ===================== -->
   <header id="header">
@@ -649,6 +686,8 @@
       </div>
     </div>
   </header>
+
+  <div class="nav-scrim" id="navScrim" aria-hidden="true"></div>
 
   <main>
     <!-- ===================== HERO ===================== -->
@@ -1110,11 +1149,11 @@
             <div class="lang-card">
               <div class="lang-item">
                 <div class="lang-top"><span class="lname" data-i18n="edu.lang.en">English</span><span class="llevel" data-i18n="edu.lang.en.level">Business Fluent</span></div>
-                <div class="lang-bar"><span data-level="92" style="--lvl:92%"></span></div>
+                <div class="lang-bar" aria-hidden="true"><span data-level="92" style="--lvl:92%"></span></div>
               </div>
               <div class="lang-item">
                 <div class="lang-top"><span class="lname" data-i18n="edu.lang.de">German</span><span class="llevel" data-i18n="edu.lang.de.level">Intermediate Proficiency</span></div>
-                <div class="lang-bar"><span data-level="55" style="--lvl:55%"></span></div>
+                <div class="lang-bar" aria-hidden="true"><span data-level="55" style="--lvl:55%"></span></div>
               </div>
             </div>
           </div>
@@ -1146,6 +1185,10 @@
       </div>
     </section>
   </main>
+
+  <button class="to-top" id="toTop" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
 
   <!-- ===================== FOOTER ===================== -->
   <footer>
@@ -1345,10 +1388,13 @@
     var hamburger = document.getElementById('hamburger');
     var navLinks = document.getElementById('navLinks');
     var hamIcon = document.getElementById('hamIcon');
+    var navScrim = document.getElementById('navScrim');
     var openPath = 'M18 6 6 18M6 6l12 12';
     var closedPath = 'M3 6h18M3 12h18M3 18h18';
     function setMenu(open) {
       navLinks.classList.toggle('open', open);
+      if (navScrim) navScrim.classList.toggle('show', open);
+      document.body.classList.toggle('menu-open', open);
       hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
       hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
       hamIcon.innerHTML = '<path d="' + (open ? openPath : closedPath) + '"/>';
@@ -1360,16 +1406,36 @@
       navLinks.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () { setMenu(false); });
       });
+      if (navScrim) {
+        navScrim.addEventListener('click', function () { setMenu(false); });
+      }
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') setMenu(false);
       });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 720 && navLinks.classList.contains('open')) setMenu(false);
+      });
     }
 
-    /* ---- Sticky header shadow ---- */
+    /* ---- Sticky header shadow + scroll progress + back-to-top ---- */
     var header = document.getElementById('header');
-    function onScroll() { if (header) header.classList.toggle('scrolled', window.scrollY > 12); }
+    var progress = document.getElementById('scrollProgress');
+    var toTop = document.getElementById('toTop');
+    function onScroll() {
+      var y = window.scrollY;
+      if (header) header.classList.toggle('scrolled', y > 12);
+      if (progress) {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
+      }
+      if (toTop) toTop.classList.toggle('show', y > 600);
+    }
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    if (toTop) {
+      toTop.addEventListener('click', function () { window.scrollTo({ top: 0 }); });
+    }
 
     /* ---- Footer year ---- */
     var yearEl = document.getElementById('year');
@@ -1440,9 +1506,12 @@
       var so = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            Object.keys(linkMap).forEach(function (id) { linkMap[id].classList.remove('active'); });
+            Object.keys(linkMap).forEach(function (id) {
+              linkMap[id].classList.remove('active');
+              linkMap[id].removeAttribute('aria-current');
+            });
             var active = linkMap[entry.target.id];
-            if (active) active.classList.add('active');
+            if (active) { active.classList.add('active'); active.setAttribute('aria-current', 'true'); }
           }
         });
       }, { rootMargin: '-45% 0px -50% 0px' });
